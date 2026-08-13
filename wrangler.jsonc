@@ -1,0 +1,26 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "bruol-url-shortener",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-08-13",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"observability": {
+		"enabled": true,
+		"head_sampling_rate": 1
+	},
+	"routes": [
+		{
+			"pattern": "short.bruol.me",
+			"custom_domain": true
+		}
+	],
+
+  "kv_namespaces": [
+    {
+      "binding": "LINKS",
+      "id": "c6b008f8b9c84c3cb1eee3da549d8fca"
+    }
+  ]
+}

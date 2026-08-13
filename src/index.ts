@@ -1,3 +1,5 @@
+import { proxyDestination } from "./proxy";
+
 const SLUG_PATTERN = /^[a-zA-Z0-9_-]{3,32}$/;
 const RESERVED = new Set(["api", "favicon.ico", "robots.txt"]);
 
@@ -114,7 +116,7 @@ export default {
       if (!SLUG_PATTERN.test(slug)) return new Response("Not found", { status: 404 });
       const destination = await env.LINKS.get(slug);
       if (!destination) return new Response("Not found", { status: 404 });
-      return Response.redirect(destination, 302);
+      return proxyDestination(destination);
     }
     return new Response("Method not allowed", { status: 405, headers: { allow: "GET, POST" } });
   },

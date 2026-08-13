@@ -2,6 +2,10 @@
 
 A Cloudflare Workers URL shortener for `short.bruol.me`, backed by Workers KV.
 
+Short URLs are reverse proxied: the destination response is streamed through the
+Worker while the short URL remains in the browser's address bar. KV continues to
+store the destination URL, including presigned R2 URLs; no R2 binding is required.
+
 ## Development
 
 ```sh
